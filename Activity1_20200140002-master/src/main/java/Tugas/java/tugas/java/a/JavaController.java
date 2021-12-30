@@ -22,30 +22,15 @@ public class JavaController {
         String nama_buah = data.getParameter("var_input1");
         String harga_perkilo = data.getParameter("var_input2");
         String jumlah_beli = data.getParameter("var_input3");
+        String tunai = data.getParameter("var_input4");
         
-        Double harga_kilo = Double.parseDouble(harga_perkilo);
-        Double jlh_beli = Double.parseDouble(jumlah_beli);
+        proses prosesdata = new proses();
         
-        Double total = harga_kilo * jlh_beli;
-        String diskon = null;
-        Double total_diskon = null;
-        Double total_harga = null;
-        
-        if (total < 16000){
-            diskon = "0%";
-            total_diskon = total*0/100;
-            total_harga = total - (total*0/100);
-        }
-        else if (total >= 16000 && total <= 25000){
-            diskon = "10%";
-            total_diskon = total*10/100;
-            total_harga = total - (total*10/100);
-        }
-        else if (total > 25000){
-            diskon = "15%";
-            total_diskon = total*15/100;
-            total_harga = total - (total*15/100);
-        }
+        Double total = prosesdata.ntotal(harga_perkilo, jumlah_beli);
+        String diskon = prosesdata.ndiskon(total);
+        Double total_diskon = prosesdata.ntotaldiskon(total);
+        Double total_harga = prosesdata.ntotalharga(total);
+        String tampil = prosesdata.nview(total_harga, tunai);
         
         kurir.addAttribute("nama", nama_buah);
         kurir.addAttribute("hargaKilo", harga_perkilo);
@@ -54,6 +39,8 @@ public class JavaController {
         kurir.addAttribute("dc", diskon);
         kurir.addAttribute("totdc", total_diskon);
         kurir.addAttribute("tot_harga", total_harga);
+        kurir.addAttribute("duit", tampil);
+        kurir.addAttribute("uangtampil", tunai);
    
         return "Puput";
     }
