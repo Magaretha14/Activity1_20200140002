@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: Tugas.java.tugas.java.a.ApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.64 s - in Tugas.java.tugas.java.a.ApplicationTests
